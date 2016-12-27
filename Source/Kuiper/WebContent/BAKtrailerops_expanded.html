@@ -1,0 +1,139 @@
+<!--<div ui-grid="row.entity.subGridOptions" style="height:150px;"></div>-->
+<html ng-app="app">
+<head>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.min.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.3/jquery.min.js"></script>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
+	type="text/css">
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+<script src="js/scripts/angular-confirm.min.js"></script>
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.2.0/animate.min.css" />
+<script src="https://code.angularjs.org/1.4.0-beta.4/angular-animate.js"></script>
+<script src="http://ui-grid.info/docs/grunt-scripts/csv.js"></script>
+<script src="http://ui-grid.info/docs/grunt-scripts/pdfmake.js"></script>
+<script src="http://ui-grid.info/docs/grunt-scripts/vfs_fonts.js"></script>
+<script src="http://ui-grid.info/release/ui-grid-unstable.js"></script>
+<link rel="stylesheet"
+	href="http://ui-grid.info/release/ui-grid-unstable.css" type="text/css">
+<script
+	src="http://angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.13.0.js"></script>
+<link rel="stylesheet" href="css/angular-ui-notification.css">
+<script src="js/angular-ui-notification.js"></script>
+<link rel="stylesheet" href="css/main.css" type="text/css">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+	<div class="Receiving_">
+		<div ng-controller="MainCtrl_Ext">
+			<h4 style="text-align: center; color: #F6ECED;">
+				<u>Trailer Details Screen</u>
+			</h4>
+			<form role="form" class="form-horizontal">
+				<div class="form-group" ng-controller="notificationController">
+					<button class="btn-lg btn-primary"
+						ng-disabled="row.entity.po_status != 'DELIVERY_ASSIGNED'"
+						ng-click="update_trailer()" ng-init="postatus='OPEN_TRAILER'">Open
+						Trailer</button>
+					<button class="btn-lg btn-primary"
+						ng-click="cancel_trailer();grid.appScope.deleteRow(row.entity);show = 2;error(row.entity.deliverynbr)"
+						confirm="Are you sure?">Cancel Trailer</button>
+					<button class="btn-lg btn-primary" ng-click="receiving_trailer()"
+						data-toggle="modal" data-target="#myModal" data-backdrop="static"
+						data-title="Receiving"
+						ng-disabled="row.entity.po_status == 'OPEN_TRAILER'">Receive
+						Delivery</button>
+
+					<div ng-show="show==1" class="alert alert-success">
+						<a class="close" data-dismiss="alert">×</a> <strong>Success!
+							Trailer {{row.entity.trailernbr}} opened for Delivery
+							{{row.entity.deliverynbr}}!!</strong>
+					</div>
+
+					<div ng-show="show==2" class="alert alert-failure">
+						<a class="close" data-dismiss="alert">×</a> <strong>Failure!
+							Trailer {{row.entity.trailernbr}} couldnt opened for Delivery
+							{{row.entity.deliverynbr}}!!</strong>
+					</div>
+				</div>
+			</form>
+			<div id="myModal" class="modal fade">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal"
+								aria-hidden="true">×</button>
+							<h4 class="modal-title">Receiving</h4>
+						</div>
+						<div class="modal-body">
+							<form role="form" class="form-horizontal">
+								<div class="container">
+									<div class="col-sm-4">
+										<table width="400">
+											<tr>
+												<td><label class="in1">LPN/Pallet ID:</label> <input
+													class="form-control" type="text" id="lpn" ng-model="LPN">
+												</td>
+											</tr>
+											<tr>
+												<td><label class="in1">Delivery Number:</label></td>
+												<td><input class="form-control" type="text"
+													id="deliveryno" ng-model="DeliveryNo" ng-disabled=1></td>
+											</tr>
+											<tr>
+												<td><label class="in1">PO Number:</label></td>
+												<td><input type="text" id="ponbr" class="form-control"
+													ng-disabled=1 ng-model="PoNbr"></td>
+											</tr>
+											<tr>
+												<td><label class="in1">Item Number:</label></td>
+												<td><select id="itmNbr" class="form-control"
+													ng-model="itmsource" ng-options="o for o in ItemList"
+													ng-click="loadItem()" ng-change="onSelectChange()">
+												</select></td>
+											</tr>
+											<tr>
+												<td><label class="in1">Total Qty:</label></td>
+												<td><input id="totqty" class="form-control"
+													ng-disabled=1 ng-model="TotQty"></td>
+											</tr>
+											<tr>
+												<td><label class="in1">Due Qty</label></td>
+												<td><input id="dueqty" class="form-control"
+													ng-disabled=1 ng-model="DueQty"></td>
+											</tr>
+											<tr>
+												<td><label class="in1">Qty To Receive:</label></td>
+												<td><input id="rcvqty" type="number"
+													class="form-control" ng-model="RcvQty"
+													ng-pattern="/^[0-9]+$/" min=1 max="{{DueQty}}"></td>
+											</tr>
+											<tr>
+												<td>.</td>
+											</tr>
+										</table>
+
+									</div>
+								</div>
+								<div class="modal-footer">
+									<button type="button" class="btn btn-default"
+										data-dismiss="modal">Cancel</button>
+									<button type="button" class="btn btn-primary"
+										ng-disabled="!RcvQty" ng-click="receive_trailer()">Receive</button>
+								</div>
+
+							</form>
+							<script src="js/trailerops.js"></script>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
+

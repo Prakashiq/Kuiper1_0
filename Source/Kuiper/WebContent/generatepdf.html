@@ -1,0 +1,23 @@
+<html>
+    <head>
+        <title>Generate PDF</title>
+        <link rel="stylesheet" href="css/bootstrap.min.css">
+        <link rel="stylesheet" href="css/style.css">
+        <script type="text/javascript" src="js/angular.min.js"></script>
+        <script type="text/javascript" src="js/app.js"></script>
+        <script type="text/javascript" src="js/jspdf.js"></script>
+        <script type="text/javascript" src="js/jspdf.amd.min"></script>
+        <script type="text/javascript" src="js/jspdf.min.js"></script>
+        <script type="text/javascript" src="js/jspdf.source.js"></script>
+	</head>
+        <style>
+        body {
+            background: #34495e;
+        }
+        </style>
+        <body class="container">
+            <div class="row" ng-app="myApp" ng-controller="pdfcntrl">
+                <input class="btn btn-primary" type="button" ng-click="generatePDF()" value="Download PDF">
+            </div>
+    </body>
+</html>

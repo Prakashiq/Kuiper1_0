@@ -1,0 +1,179 @@
+/*----------------------------------------------
+css settings for HTML div exactCenter 
+------------------------------------------------*/
+@import url(http://fonts.googleapis.com/css?family=Raleway);
+
+.round-button {
+    display:block;
+    width:200px;
+    height:200px;
+    line-height:200px;
+    border: 2px solid #f5f5f5;
+    border-radius: 200%;
+    color:#000;
+    text-align:center;
+    text-decoration:none;
+    text-shadow:0 1px 0 #000; 
+    box-shadow: 0 0 3px gray; 
+    background: #f1c40f;
+    font-size:20px;
+    font-weight:400;
+    font-family: 'Roboto', sans-serif;
+    margin: 200px 490px;
+}
+
+.two{display:none}.round-button:hover 
+
+.one{display:none}.round-button:hover 
+
+.two{display:inline}.round-button:hover
+{
+	background: #f1c40f;
+	color: #000; 
+}
+
+.login h2{
+color: #F6ECED;
+text-align:center;
+border-radius: 10px 10px 0 0;
+margin: -10px -40px;
+padding: 15px;
+/*font-family: 'Roboto', sans-serif;*/
+font-family: Cambria, Georgia, serif;
+font-weight: 400;
+}
+
+.login hr{
+border:0;
+border-bottom:1px solid #000;
+margin: -10px -40px;
+margin-bottom: 10px;
+}
+
+.login{
+width:350px;
+margin: 80px 290px auto;
+border-radius: 10px;
+font-family: Cambria, Georgia, serif;
+border: 2px solid #000;
+padding: 10px 40px 10px;
+word-wrap: break-word;
+color: #000;
+}
+
+.login p{
+margin-top:8px;
+font-size:16px;
+}
+
+input[type=text]{
+width:99.5%;
+padding: 10px;
+border: 1px solid #000;
+padding-left: 5px;
+font-size: 16px;
+font-family: Cambria, Georgia, serif;
+} 
+label#label{
+margin-bottom:10px;
+font-size:18px;
+font-weight:bold;
+color: #ffffff;
+}          
+textarea.ng-invalid{
+border:1px solid red;
+border-left: 5px solid red;
+}
+textarea.ng-valid.ng-dirty{
+border:1px solid green;
+border-left: 5px solid green; 
+}
+select.ng-invalid{
+border:1px solid red;
+border-left: 5px solid red;
+}
+select.ng-valid.ng-dirty{
+border:1px solid green;
+border-left: 5px solid green; 
+}
+input.ng-invalid{
+border:1px solid red;
+border-left: 5px solid red;
+}
+input.ng-valid.ng-dirty{
+border:1px solid green;
+border-left: 5px solid green;
+}
+span.msg{
+margin-top:15px;
+color:red;
+}
+.headname{
+font-size:15px;
+}
+
+/*.btn {
+	background: #blue;
+	color: #000;
+	font-weight: bold;
+	font-size:15px;
+} */
+
+.postcomment h2{
+text-align:center;
+border-radius: 10px 10px 0 0;
+margin: 0px 10px;
+padding: 15px;
+color: #000;
+}
+.postcomment hr{
+width:auto;	
+border:0;
+border-bottom:1px solid #ccc;
+margin: 10px 10px;
+margin-bottom: 20px;
+}
+.postcomment{
+width:900px;
+height:68%;
+border-radius: 10px;
+font-family: 'Lato', Arial, sans-serif;
+border: 2px solid #ccc; 
+padding: 10px 40px 10px;
+word-wrap: break-word;
+color: #000;
+font-weight:bold;
+font-size: 15px;
+margin: 40px 260px 10px 0px;
+background: rgba(0,0,0,0.05);
+}
+
+.postcomment li {
+border:1px solid #ccc;
+border-radius: 10px;
+height: 25%;
+font-family: 'Raleway' sans-serif;
+text-align:left;
+margin: 5px;
+width: 650px;
+}
+
+.scrollbar {
+	height:224px;
+	overflow:auto;
+}
+
+.container {
+    width: 100%;
+    margin: 10px;
+}
+
+.item {
+    float: left;
+}
+
+
+label.in1 {
+color: #222222;
+
+}

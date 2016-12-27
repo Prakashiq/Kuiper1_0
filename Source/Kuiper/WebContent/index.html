@@ -1,0 +1,59 @@
+<html>
+<head>
+<title>Login Form</title>
+<link rel="stylesheet" href="css/bootstrap.min.css">
+<link rel="stylesheet" href="css/style.css">
+<script type="text/javascript" src="js/angular.min.js"></script>
+<script type="text/javascript" src="js/app.js"></script>
+</head>
+<style>
+body {
+	background: white;
+}
+
+</style>
+
+
+<body class="container">
+
+	<div class="row" ng-app="myApp" ng-controller="logincntrl">
+		<!-- <I><h2 class="text-center"> Receiving Application</h2></I> -->
+		<div class="col-md-offset-1 col-md-6 col-sm-12">
+			<div class="login">
+				<h2><font color="#222222">Sign-in</font> <font size=4 color="#FF4500">Kuiper</font> </h2> 
+				<hr>
+				<!--Code of form started-->
+				<form class="form-horizontal" name="frm" novalidate>
+					<!--Code to validate first name is written here-->
+					<div class="form-group">
+						<label id="label" class="control-label">User Name:</label> <input
+							type="text" class="form-control" name="username"
+							ng-model="user.username" placeholder="Enter User Name"
+							autocomplete="off" required />
+					</div>
+
+					<!--Code to validate password is written here-->
+					<div class="form-group">
+						<label id="label" class="control-label">Password:</label> <input
+							type="password" class="in1 form-control" ng-model="user.pass"
+							name="pass" placeholder="Enter Password" autocomplete="off"
+							ng-minlength="5" ng-maxlength="12" required> <span
+							class="msg"
+							ng-show="frm.pass.$dirty && frm.pass.$error.minlength">password
+							must contain atleast 5 charecters</span> <span class="msg"
+							ng-show="frm.pass.$dirty && frm.pass.$error.maxlength">max-length
+							of password reached</span>
+					</div>
+
+					<div class="form-group">
+						<input ng-disabled="frm.$invalid" class="btn btn-primary"
+							type="submit" ng-click="validate_login()" value="Submit">
+						<input class="btn btn-primary" type="reset" ng-click="cancel()"
+							value="Clear"> 
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

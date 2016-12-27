@@ -1,0 +1,107 @@
+<!--<div ui-grid="row.entity.subGridOptions" style="height:150px;"></div>-->
+<html ng-app="app">
+<head>
+
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.4/angular.min.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.4/angular-animate.min.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.4/angular-route.min.js"></script>
+<script
+	src="http://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.13.3/ui-bootstrap-tpls.min.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.3/jquery.min.js"></script>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
+	type="text/css">
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+<script src="js/scripts/angular-confirm.min.js"></script>
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.2.0/animate.min.css" />
+<script src="https://code.angularjs.org/1.4.0-beta.4/angular-animate.js"></script>
+<script src="http://ui-grid.info/docs/grunt-scripts/csv.js"></script>
+<script src="http://ui-grid.info/docs/grunt-scripts/pdfmake.js"></script>
+<script src="http://ui-grid.info/docs/grunt-scripts/vfs_fonts.js"></script>
+<script src="http://ui-grid.info/release/ui-grid-unstable.js"></script>
+<link rel="stylesheet"
+	href="http://ui-grid.info/release/ui-grid-unstable.css" type="text/css">
+<link rel="stylesheet" href="css/angular-ui-notification.css">
+<script src="js/angular-ui-notification.js"></script>
+<link rel="stylesheet" href="css/main.css" type="text/css">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<style>
+body {
+	background: white;
+}
+</style>
+<body>
+	<div class="container">
+		<div ng-controller="Rec_MainCtrl" data-ng-init="parentData()">
+			<h4 style="text-align: center;">
+				<u>Receive by Delivery</u>
+			</h4>
+			<form role="form" class="form-horizontal">
+				<div class="form-group">
+				<div class="col-sm-4">
+						<label class="in1">LPN/Pallet ID:</label> <input
+							class="form-control" type="text" id="lpn"
+							ng-model="LPN">
+					</div>
+					<div class="col-sm-4">
+						<label class="in1">Delivery Number:</label> <input
+							class="form-control" type="text" id="deliveryno"
+							ng-model="DeliveryNo" ng-disabled=1>
+					</div>
+					<div class="col-sm-4">
+						<label class="in1">PO Number:</label> <input type="text"
+							id="ponbr" class="form-control" ng-disabled=1 ng-model="PoNbr">
+
+						<label class="in1">Item Number:</label>
+						 <select id="itmNbr"
+							class="form-control" ng-model="itmsource"
+							ng-options="o for o in ItemList" ng-click="loadItem()" 
+							ng-change="onSelectChange()">
+							</select>
+					</div>
+					<div class="col-sm-4">
+						<label class="in1">Total Qty:</label> <input id="totqty"
+							class="form-control" ng-disabled=1 ng-model="TotQty"> <label
+							class="in1">Due Qty</label> <input id="dueqty"
+							class="form-control" ng-disabled=1 ng-model="DueQty"> <label
+							class="in1">Qty To Receive:</label> <input id="rcvqty"
+							type="number" class="form-control" ng-model="RcvQty"
+							ng-pattern="/^[0-9]+$/" min=1 max="{{DueQty}}">
+					</div>
+					<div class="col-sm-4">
+						<button class="btn-lg btn-primary center-block"
+							ng-disabled="!RcvQty||!LPN" ng-click="receive_trailer()">Receive</button>
+					</div>
+					<div class="col-sm-8" style="margin-top: 10px; width: 1000px">
+						<div ng-show="show==1" class="alert alert-success">
+							<a class="close" data-dismiss="alert">×</a> <strong>Success!
+								PO {{PoNbr}} for Item {{ItemNbr}} Received Successfully. Label
+								{{PoNbr}}{{ItemNbr}} has been generated!!</strong>
+						</div>
+						
+						<div ng-show="show==2" class="alert alert-success">
+							<a class="close" data-dismiss="alert">×</a> <strong>Success!
+								PO {{PoNbr}} for Item {{ItemNbr}} Did Received.</strong>
+						</div>
+						<div ng-show="show==3" class="alert alert-success">
+							<a class="close" data-dismiss="alert">×</a> <strong>Choose next PO for receiving.</strong>
+						</div>
+						<div ng-show="show==4" class="alert alert-success">
+							<a class="close" data-dismiss="alert">×</a> <strong>Inventory Log not recorded</strong>
+						</div>
+					</div>
+				</div>
+			</form>
+			<script src="js/trailerops.js"></script>
+
+		</div>
+	</div>
+</body>
+</html>

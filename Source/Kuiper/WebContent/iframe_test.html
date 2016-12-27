@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Example of Bootstrap 3 Modal Events</title>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+	integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+	crossorigin="anonymous">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
+	integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp"
+	crossorigin="anonymous">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+	integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+	crossorigin="anonymous"></script>
+<script type="text/javascript">
+	$(document).ready(function() {
+		$("#myModal").on('show.bs.modal', function(event) {
+			var button = $(event.relatedTarget); // Button that triggered the modal
+			var titleData = button.data('title'); // Extract value from data-* attributes
+			$(this).find('.modal-title').text(titleData + ' Form');
+		});
+	});
+</script>
+<style type="text/css">
+.bs-example {
+	margin: 20px;
+}
+</style>
+</head>
+<body>
+	<div class="Receiving_">
+		<button type="button" class="btn btn-primary" data-toggle="modal"
+			data-target="#myModal" data-title="Receiving">Receiving</button>
+
+		<!-- Modal HTML -->
+		<div id="myModal" class="modal fade">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<!-- <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button> -->
+						<h4 class="modal-title">Modal Window</h4>
+					</div>
+					<div ng-controller="Rec_MainCtrl" data-ng-init="parentData()">
+						<div class="modal-body">
+							<form role="form" class="form-horizontal">
+								<div class="container">
+									<div class="col-sm-4">
+									<table width="400">
+	  									<tr><td><label class="in1">Delivery Number:</label></td>
+	    									<td><input	class="form-control" type="text" id="deliveryno" ng-model="DeliveryNo" ng-disabled=1 ></td>
+	  									</tr>
+	  									<tr>
+		    								<td><label class="in1">PO Number:</label> </td>
+		    								<td><input type="text" id="ponbr" class="form-control" ng-disabled=1 ng-model="PoNbr"></td>
+	  									</tr>
+	  									<tr>
+	  										<td><label class="in1">Item Number:</label></td>
+	  										<td><select id="itmNbr" class="form-control" ng-model="itmsource" 
+	  										            ng-options="o for o in ItemList" ng-click="loadItem()" ng-change="onSelectChange()">
+												</select>
+											</td>
+										</tr>
+										<tr>
+											<td><label class="in1">Total Qty:</label></td>
+											<td><input id="totqty" class="form-control" ng-disabled=1 ng-model="TotQty"></td>
+										</tr>
+										<tr>
+											<td><label class="in1">Due Qty</label> </td>
+											<td><input id="dueqty" class="form-control" ng-disabled=1 ng-model="DueQty"></td>
+										</tr>
+										<tr>
+										<td><label class="in1">Qty To Receive:</label></td>
+										<td><input id="rcvqty" type="number" class="form-control" ng-model="RcvQty" ng-pattern="/^[0-9]+$/" min=1 max="{{DueQty}}"></td></tr>
+										<tr><td>.</td></tr>
+									</table>					
+			
+									</div>
+								</div>
+									<div class="modal-footer">
+										<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+										<button type="button" class="btn btn-primary" ng-disabled="!RcvQty" ng-click="receive_trailer()">Receive</button>
+									</div>	
+				
+							</form>
+							<script src="js/trailerops.js"></script>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

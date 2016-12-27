@@ -1,0 +1,23 @@
+
+<div class="wwa-temperature-widget">
+
+	<div class="wwa-inventory-heading">
+		
+		 <span class="www-temperature-title">Inbound
+			Order</span>
+	</div>
+
+	<div class="wwa-temperature-body"
+		ng-style="selectedLocation != null && {'background-image': 'url(/images/' + selectedLocation.image + ')'}">
+		<div ng-if="!isLoaded && !hasError">
+			<i class="fa fa-refresh fa-2x fa-spin"></i>
+		</div>
+
+		<iframe src="/Kuiper/piechart.html" name="Frame" height=750 width=auto frameBorder="0"></iframe>
+	</div>
+	<div ng-if="hasError">
+		<h4>Error loading widget.</h4>
+		<button class="btn btn-primary" ng-click="loadLocation()">Reload</button>
+	</div>
+</div>
+

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+	<PurchaseOrder>
+		<PurchaseOrderNbr>10001</PurchaseOrderNbr>
+		<Vendor_nbr>3442</Vendor_nbr>
+		<BuyerName>FARM</BuyerName>
+		<PurchaseOrderDate>Sep 20, 2016 3:51:33 PM</PurchaseOrderDate>
+		<ShipDate>Sep 20, 2016 3:51:33 PM</ShipDate>
+		<MustArriveDate>Sep 20, 2016 3:51:33 PM</MustArriveDate>
+		<PO_Line_Lst>
+			<PO_Line>
+				<po_line_nbr>1</po_line_nbr>
+				<ordered_qty>10</ordered_qty>
+				<unit_UOM>EACH</unit_UOM>
+				<each_cost>12.98</each_cost>
+				<item_nbr>10003</item_nbr>
+			</PO_Line>
+			<PO_Line>
+				<po_line_nbr>2</po_line_nbr>
+				<ordered_qty>10</ordered_qty>
+				<unit_UOM>EACH</unit_UOM>
+				<each_cost>12.98</each_cost>
+				<item_nbr>10003</item_nbr>
+			</PO_Line>
+			<PO_Line>
+				<po_line_nbr>3</po_line_nbr>
+				<ordered_qty>10</ordered_qty>
+				<unit_UOM>EACH</unit_UOM>
+				<each_cost>12.98</each_cost>
+				<item_nbr>10003</item_nbr>
+			</PO_Line>
+		</PO_Line_Lst>
+	</PurchaseOrder>

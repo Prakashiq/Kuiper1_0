@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html ng-app="app">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>Whitewater Adventures</title>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+    <link href="Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="Content/font-awesome.min.css" rel="stylesheet" />
+    <link href="Content/angular-gridster.min.css" rel="stylesheet" />
+    <link href="app/app.css" rel="stylesheet" />
+    <link href="ext-modules/psFramework/psFramework.css" rel="stylesheet" />
+    <link href="ext-modules/psDashboard/psDashboard.css" rel="stylesheet" />
+
+    <!-- widget css -->
+    <link href="app/widgets/wwaInbound/wwaInbound.css" rel="stylesheet" />
+    <link href="app/widgets/wwaOutbound/wwaOutbound.css" rel="stylesheet" />
+    <link href="app/widgets/wwaEmployee/wwaEmployee.css" rel="stylesheet" />
+
+    <script src="Scripts/jquery-2.1.3.min.js"></script>
+    <script src="Scripts/angular.min.js"></script>
+    <script src="Scripts/angular-animate.min.js"></script>
+    <script src="Scripts/angular-route.min.js"></script>
+    <script src="Scripts/angular-gridster.min.js"></script>
+    <script src="Scripts/bootstrap.min.js"></script>
+    <script src="Scripts/angular-ui/ui-bootstrap-tpls.min.js"></script>
+    <script src="Scripts/ngStorage.min.js"></script>
+
+    <script src="ext-modules/psDashboard/psDashboardModule.js"></script>
+    <script src="ext-modules/psDashboard/psDashboardDirective.js"></script>
+    <script src="ext-modules/psDashboard/psWidgetBodyDirective.js"></script>
+
+    <script src="ext-modules/psFramework/psFrameworkModule.js"></script>
+    <script src="ext-modules/psFramework/psFrameworkController.js"></script>  
+    <script src="ext-modules/psFramework/psFrameworkDirective.js"></script>
+<!--     <script src="ext-modules/psFramework/psUserProfile/psUserProfileSmallDirective.js"></script>
+    <script src="ext-modules/psFramework/psUserProfile/psUserProfileDirective.js"></script>
+ -->
+    <script src="app/appModule.js"></script>
+    <script src="app/appConfig.js"></script>
+    <script src="app/appRouteConfig.js"></script>
+    <script src="app/appController.js"></script>  
+    <script src="app/services/dataService.js"></script>
+
+    <script src="app/directives/wwaDashboardDirective.js"></script>
+    <script src="app/directives/wwaGuidesDirective.js"></script>
+    <script src="app/directives/wwaLocationsDirective.js"></script>
+
+    <!-- widget JavaScript files -->
+    <script src="app/widgets/wwaInbound/wwaInboundDirective.js"></script>
+    <script src="app/widgets/wwaOutbound/wwaOutboundDirective.js"></script>
+    <script src="app/widgets/wwaEmployee/wwaEmployeeDirective.js"></script>
+
+    <!-- setting dialogs -->
+    <script src="app/dialogs/wwaSelectEmployeeController.js"></script>
+    <script src="app/dialogs/wwaSelectLocationController.js"></script>
+
+</head>
+<body class="container-fluid" ng-controller="appController">
+            <ps-framework title=""
+                          subtitle=""
+                          icon-file="">
+            </ps-framework>
+    </div>
+
+
+</body>
+</html>

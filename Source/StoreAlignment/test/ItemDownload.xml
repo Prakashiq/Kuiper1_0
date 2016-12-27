@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ItemList>
+	<Item>
+		<ItemNumber>10005</ItemNumber>
+		<ItemDescription>item_10005</ItemDescription>
+		<ItemStatusCode>A</ItemStatusCode>
+		<CostAmount>30.00</CostAmount>
+		<SellAmount>2.00</SellAmount>
+		<MinOrderQty>1</MinOrderQty>
+		<CaseUpcNumber>910005</CaseUpcNumber>
+		<VendorStockID>4334</VendorStockID>
+		<UnitOfMeasure>EACH</UnitOfMeasure>
+		<itemDimension>
+			<height>10.1</height>
+			<width>34</width>
+			<depth>4</depth>
+			<uom>CM</uom>
+		</itemDimension>
+	</Item>
+
+	<Item>
+		<ItemNumber>10005</ItemNumber>
+		<ItemDescription>item_10005</ItemDescription>
+		<ItemStatusCode>A</ItemStatusCode>
+		<CostAmount>30.00</CostAmount>
+		<SellAmount>2.00</SellAmount>
+		<MinOrderQty>1</MinOrderQty>
+		<CaseUpcNumber>910005</CaseUpcNumber>
+		<VendorStockID>4334</VendorStockID>
+		<UnitOfMeasure>EACH</UnitOfMeasure>
+		<itemDimension>
+			<height>10.1</height>
+			<width>34</width>
+			<depth>4</depth>
+			<uom>CM</uom>
+		</itemDimension>
+	</Item>
+</ItemList>

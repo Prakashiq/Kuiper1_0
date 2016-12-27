@@ -1,0 +1,180 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Receiving Menu</title>
+<style>
+body {
+  background: linear-gradient(to left, #3D7EAA , #FFE47A); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  font-family: 'Lato', Arial, sans-serif;
+}
+
+.container {
+  width: 550px;
+  display: block;
+  margin: auto;
+  position: relative;
+}
+
+.menu_opener {
+  display: none;
+}
+
+.menu_opener:checked ~ .link_one {
+  top: 30px;
+  left: 190px;
+}
+.menu_opener:checked ~ .link_two {
+  top: 220px;
+  left: 380px;
+}
+.menu_opener:checked ~ .link_three {
+  top: 390px;
+  left: 190px;
+}
+.menu_opener:checked ~ .link_four {
+  left: 10px;
+}
+
+.menu_opener:checked ~ .menu_opener_label:after {
+  transform: rotate(45deg);
+  top: 70px;
+}
+
+.menu_opener:checked ~ .menu_opener_label:before {
+  transform: rotate(-45deg);
+  top: 70px;
+}
+
+.menu_opener_label {
+  background: #fff;
+  color: #52be7f;
+  width: 210px;
+  height: 200px;
+  display: block;
+  cursor: pointer;
+  border-radius: 100px;
+  line-height: 200px;
+  position: absolute;
+  z-index: 10;
+  margin: 180px 160px;
+  text-align: center;
+  font-weight: bold;
+  font-size:40px;
+
+}
+.menu_opener_label:after {
+  position: absolute;
+  top: 50px;
+  left: 50px;
+  background: #fff;
+  color: #52be7f;
+  content: "";
+  width: 100px;
+  height: 100px;
+  -webkit-transition: all 0.4s ease;
+  transition: all 0.4s ease;
+  display: none;
+}
+.menu_opener_label:before {
+  position: absolute;
+  top: 90px;
+  left: 50px;
+  background: #fff;
+  color: #52be7f;
+  content: "";
+  width: 50px;
+  height: 10px;
+  -webkit-transition: all 0.4s ease;
+  transition: all 0.4s ease;
+  display: none;
+}
+
+.link_general {
+  width: 100px;
+  height: 100px;
+  display: block;
+  border-radius: 50%;
+  position: absolute;
+  top: 225px;
+  left: 225px;
+  /*background: #ecf0f1; */
+  background: #fff;
+  color: #52be7f;
+  -webkit-transition: all 0.4s ease;
+  transition: all 0.4s ease;
+}
+
+.link_one {
+  background: url("css/images/home1.jpg") #fff no-repeat center center;
+  width: 140px;
+  height: 140px;
+  display: block;
+  cursor: pointer;
+  border-radius: 70px;
+  line-height: 140px;
+  text-align: center;
+  font-size: 20px;
+  font-weight: bold;
+  color: #52be7f;
+}
+
+.link_two {
+  background: #fff no-repeat center center;
+  width: 140px;
+  height: 140px;
+  display: block;
+  cursor: pointer;
+  border-radius: 70px;
+  line-height: 140px;
+  text-align: center;
+  font-size: 20px;
+  font-weight: bold;
+  color: #52be7f;
+ }
+
+.link_three {
+  /*background: #f1c40f no-repeat center center;*/
+  background: #fff no-repeat center center;
+  width: 140px;
+  height: 140px;
+  display: block;
+  cursor: pointer;
+  border-radius: 70px;
+  line-height: 140px;
+  text-align: center;
+  font-size: 20px;
+  font-weight: bold;
+  color: #52be7f;
+ }
+
+.link_four {
+  background: #fff no-repeat center center;
+  width: 140px;
+  height: 140px;
+  display: block;
+  cursor: pointer;
+  border-radius: 70px;
+  line-height: 140px;
+  text-align: center;
+  font-size: 20px;
+  font-weight: bold;
+  color: #52be7f;
+ }
+
+</style>
+</head>
+
+<body><div id="css-script-menu">
+  <div class="css-script-center">
+    <div class="container">
+      <input type="checkbox" id="menu_opener_id" class="menu_opener">
+      <label for="menu_opener_id" class="menu_opener_label">Menu</label>
+      <a href="index.html" class="link_one link_general"></a>
+      <a href="receiving.html" class="link_two link_general">Receiving Ops</a>
+      <a href="trailer.html" class="link_three link_general">Delivery Mgmt</a>
+      <a href="blog.html" class="link_four link_general">Dashboard</a>
+    </input>
+  </div>
+</body>
+</html>

@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!--<title>metisMenu</title>
+
+  <link rel="stylesheet" href="bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.2/css/font-awesome.min.css">
+
+  <link rel="stylesheet" href="metisMenu.min.css">
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.4.1/themes/prism.min.css">
+  [if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+
+<link rel="stylesheet" href="css/bootstrap.min.css">
+<link rel="stylesheet" href="css/metisMenu.css">
+<link rel="stylesheet" href="css/menu.css">
+<script src="https://code.jquery.com/jquery.js"></script>
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+<script src="js/metisMenu.js"></script>
+</head>
+
+<body>
+
+<style>
+      body {
+        background: linear-gradient(to right, #333333 10px, #222222 10px);
+      }
+</style>
+  <nav class="navbar navbar-default navbar-static-top" role="navigation">
+    <div class="container-fluid">
+      <!-- Brand and toggle get grouped for better mobile display -->
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="menu.html"><font color="#FF4500">Kuiper</font></a>
+      </div>
+
+         <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container-fluid -->
+  </nav>
+
+
+
+  <div class="clearfix">
+    <aside class="sidebar">
+      <nav class="sidebar-nav">
+        <ul class="metismenu" id="menu">
+        <li>
+            <a href="#" aria-expanded="false">Setup<span class="glyphicon arrow"></span></a>
+            <ul aria-expanded="false">
+              <li><a href="carrierSetup.html" target="Frame">Carrier</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="#" aria-expanded="false">Receiving<span class="glyphicon arrow"></span></a>
+            <ul aria-expanded="false">
+              <li><a href="trailerops.html" target="Frame">Operation</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="#" aria-expanded="false">Shipping <span class="glyphicon arrow"></span></a>
+            <ul aria-expanded="false">
+              <li><a href="shippingops.html" target="Frame">Store Order</a></li>
+        
+              </ul>
+          </li>
+          <li>
+            <a href="#" aria-expanded="false">Report <span class="glyphicon arrow"></span></a>
+            <ul aria-expanded="false">
+              <li><a href="ItemReport.html" target="Frame">Item Details</a></li>
+              <li><a href="PurchaseOrderReport.html" target="Frame">Purchase Order</a></li>
+              <li><a href="StoreOrderReport.html" target="Frame">Store Order</a></li>
+              <li><a href="#">Inventory Summary</a></li>
+              <li><a href="#">Bill of Lading</a></li>
+              </ul>
+          </li>
+        </ul>
+      </nav>
+    </aside>
+    
+
+  <script>
+    $(function() {
+
+      $('#menu').metisMenu();
+
+      $('#menu2').metisMenu({
+        toggle: false
+      });
+
+      $('#menu3').metisMenu({
+        doubleTapToGo: true
+      });
+
+      $('#menu4').metisMenu();
+
+    });
+  </script>
+
+  <iframe src="landingPage.html" name="Frame" width="1150" height="650" style="background: #333333;">
+    
+  </iframe>
+  </body>
+
+</html>

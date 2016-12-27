@@ -1,0 +1,82 @@
+<!--<div ui-grid="row.entity.subGridOptions" style="height:150px;"></div>-->
+<html ng-app="app">
+<body>   
+	<div class="container">
+	<div ng-controller="MainCtrl">
+	<h4 style="text-align:center;"><u>Receive By Delivery</u></h4>
+     <form role="form" class="form-horizontal" >
+         <div class="form-group">
+          <div class="col-sm-4">
+		  <label>Delivery Number:</label>
+		  <input type="text" class="form-control" id="deliverynbr" value={{row.entity.DeliveryNo}} readonly>
+		  </div>
+          <div class="col-sm-4">
+		  <label>PO Number:</label>
+                      <select id="ponbr" class="form-control" ng-model="posource" ng-options="o for o in pos" >
+                      <option value=''>Select PO</option>
+                      </select>
+		   </div>
+          <div class="col-sm-4">
+          <label>Item Number:</label>
+          <select id="itemnbr" class="form-control"  ng-disabled="!posource" ng-model="itemsource" ng-options="item.ItemNbr for item in posource.Items" ng-change="GetSelectedItem()">
+          <option value=''>Select Item</option>
+           </select>
+	      </div>
+        </div>
+
+        <div class="form-group">
+		  <div class="col-sm-4">
+          <label > Total Qty: </label>
+          <input id="totqty" class="form-control" ng-disabled="!posource || !itemsource" ng-model="itemsource.TotQty" readonly>
+          </div>
+
+
+          <div class="col-sm-4">
+          <label>Due Qty:</label>
+          <input id="dueqty" class="form-control" ng-disabled="!posource || !itemsource" ng-model="itemsource.DueQty" readonly>
+          </div>
+
+          <div class="col-sm-4">
+          <label>Qty to Receive:</label>
+          <input id="rcvqty" type="number" class="form-control" ng-disabled="!posource || !itemsource" ng-model="rcvqty" ng-pattern="/^[0-9]+$/" min=0 max="{{itemsource.DueQty}}">
+          </div>
+        </div>
+
+        <div class="form-group">
+		  <div class="col-sm-4">
+          <label>No of Pallets:</label>
+          <input id="pallet" class="form-control" ng-disabled="!posource || !itemsource || !rcvqty" ng-model="nopallet" onkeypress='return event.charCode >= 48 && event.charCode <= 57' required>
+          </div>
+
+           <div class="col-sm-4">
+           <label>SlotID:</label>
+           <select id="slot" class="form-control"  ng-disabled="!posource || !itemsource || !rcvqty || !nopallet" ng-model="slotsource" ng-options="slt.slot for slt in slotid">
+           <option value=''>Select Slot</option>
+           </select>
+          </div>
+
+           <div class="col-sm-4">
+		   <label for="userid">UserID:</label>
+           <span class="form-control" id="userid" ng-model="useridsource" >{{row.entity.UserID}} </span>
+          </div>
+		</div>
+		
+   <div>
+           <div class="form-group">
+		    <div class="col-md-12">
+	       <button class="btn btn-primary center-block"  ng-disabled = "!slotsource" ng-click="show = 1">Receive</button>
+		   </div>
+		    <div class="col-sm-8" style="margin-top:10px;width:1000px">
+             <div ng-show="show==1" class="alert alert-success">
+			 <a class="close" data-dismiss="alert">×</a>
+              <strong>Success! Delivery {{row.entity.DeliveryNo}} for PO {{posource.PoNbr}} Received Successfully. Label {{posource.PoNbr}}{{itemsource.ItemNbr}}-{{slotsource.slot}} has been generated!!</strong>
+			 </div>
+            </div>	  	
+          </div>
+   </div> 
+      <script src="js/app_delivery.js"></script>
+</form>
+</div>
+</div>
+</body>
+</html>

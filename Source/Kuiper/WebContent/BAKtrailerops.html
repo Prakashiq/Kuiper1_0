@@ -1,0 +1,129 @@
+
+<!doctype html>
+<html ng-app="app">
+
+<head>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.min.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.3/jquery.min.js"></script>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
+	type="text/css">
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+<script src="js/scripts/angular-confirm.min.js"></script>
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.2.0/animate.min.css" />
+<script src="https://code.angularjs.org/1.4.0-beta.4/angular-animate.js"></script>
+<script src="http://ui-grid.info/docs/grunt-scripts/csv.js"></script>
+<script src="http://ui-grid.info/docs/grunt-scripts/pdfmake.js"></script>
+<script src="http://ui-grid.info/docs/grunt-scripts/vfs_fonts.js"></script>
+<script src="http://ui-grid.info/release/ui-grid-unstable.js"></script>
+<link rel="stylesheet"
+	href="http://ui-grid.info/release/ui-grid-unstable.css" type="text/css">
+<script
+	src="http://angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.13.0.js"></script>
+<link rel="stylesheet" href="css/angular-ui-notification.css">
+<script src="js/angular-ui-notification.js"></script>
+<link rel="stylesheet" href="css/main.css" type="text/css">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<style>
+body {
+	background: linear-gradient(to right, #333333 10px, #222222 10px);
+}
+
+h1 {
+	-webkit-box-sizing: content-box;
+	-moz-box-sizing: content-box;
+	box-sizing: content-box;
+	cursor: pointer;
+	border: none;
+	font: normal 50px/normal "Passero One", Helvetica, sans-serif;
+	color: rgba(255, 255, 255, 1);
+	text-align: center;
+	-o-text-overflow: clip;
+	text-overflow: clip;
+	text-shadow: 0 1px 0 rgb(204, 204, 204), 0 2px 0 rgb(201, 201, 201), 0
+		3px 0 rgb(187, 187, 187), 0 4px 0 rgb(185, 185, 185), 0 5px 0
+		rgb(170, 170, 170), 0 6px 1px rgba(0, 0, 0, 0.0980392), 0 0 5px
+		rgba(0, 0, 0, 0.0980392), 0 1px 3px rgba(0, 0, 0, 0.298039), 0 3px 5px
+		rgba(0, 0, 0, 0.2), 0 5px 10px rgba(0, 0, 0, 0.247059), 0 10px 10px
+		rgba(0, 0, 0, 0.2), 0 20px 20px rgba(0, 0, 0, 0.14902);
+	-webkit-transition: all 300ms cubic-bezier(0.42, 0, 0.58, 1);
+	-moz-transition: all 300ms cubic-bezier(0.42, 0, 0.58, 1);
+	-o-transition: all 300ms cubic-bezier(0.42, 0, 0.58, 1);
+	transition: all 300ms cubic-bezier(0.42, 0, 0.58, 1);
+}
+</style>
+<div class="container">
+	<div ng-controller="MainCtrl">
+		<h1 style="text-align: center;">Create Delivery</h1>
+		<form role="form" class="form-horizontal">
+			<div class="form-group">
+				<div class="col-sm-4">
+					<label class="in1">Delivery Number:</label> <input type="text"
+						class="form-control" id="deliverynbr" ng-model="delivnbr"
+						onkeypress='return event.charCode >= 48 && event.charCode <= 57'>
+				</div>
+				<div class="col-sm-4">
+					<label class="in1">Trailer Number:</label> <input type="text"
+						id="trlrnbr" ng-model="trlnbr" class="form-control">
+				</div>
+				<div class="col-sm-4">
+					<label class="in1">Carrier Number:</label> <input type="text"
+						id="crrnbr" ng-model="carrnbr" class="form-control">
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="col-sm-4">
+					<label class="in1">Truck Qty:</label> <input type="text"
+						class="form-control" ng-model="trkqty" id="truckqty"
+						onkeypress='return event.charCode >= 48 && event.charCode <= 57'>
+				</div>
+				<div class="col-sm-4">
+					<label class="in1">PO Number:</label> <select id="ponbr"
+						class="form-control" ng-model="posource"
+						ng-options="o for o in pos" ng-click="load_po()">
+						<option value=''>Select PO</option>
+					</select>
+				</div>
+				<div class="col-sm-4">
+					<label class="in1">Vendor Name:</label> <input type="text"
+						id="vndname" ng-model="vndrname" class="form-control">
+				</div>
+			</div>
+
+			<div class="form-group">
+				<div class="col-md-6">
+					<button class="btn-lg "
+						ng-disabled="!posource || !vndrname || !delivnbr || !carrnbr || !trlnbr || !trkqty "
+						ng-click="create_delivery()">Create Delivery</button>
+
+					<input class="btn-lg" type="reset" value="Reset">
+					<button class="btn-lg " id="refreshButton" type="button"
+						class="btn" ng-click="refreshData()">Show Delivery</button>
+					<br> <strong><span color="#F6ECED;">{{
+							myData.length }} rows</span></strong> <br>
+				</div>
+			</div>
+			<div  style="margin-top: 10px;">
+				<div ng-show="show_msg==0" class="alert-box success">
+					<strong>Success!</strong> Delivery {{ponumber}} Created
+					Successfully!!
+				</div>
+				<div ng-show="show==1" class="alert-box failure">
+					Delivery {{delivnbr}} <strong>{{error}}</strong>
+				</div>
+				<div id="grid1" ui-grid="gridOptions" ui-grid-expandable
+					ui-grid-resize-columns ui-grid-move-columns ui-grid-pinning
+					ui-grid-selection ui-grid-exporter ui-grid-auto-resize>
+				</div>
+			</div>
+		</form>
+	</div>
+</div>
+<script src="js/trailerops.js"></script>
+</body>
+</html>

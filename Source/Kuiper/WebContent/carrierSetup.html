@@ -1,0 +1,138 @@
+
+<!doctype html>
+<html ng-app="appCarrSetup">
+
+<head>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.min.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.3/jquery.min.js"></script>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
+	type="text/css">
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+<script src="js/scripts/angular-confirm.min.js"></script>
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.2.0/animate.min.css" />
+<script src="http://ui-grid.info/release/ui-grid-unstable.js"></script>
+<link rel="stylesheet"
+	href="http://ui-grid.info/release/ui-grid-unstable.css" type="text/css">
+<script
+	src="http://angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.13.0.js"></script>
+<link rel="stylesheet" href="css/angular-ui-notification.css">
+<script src="js/angular-ui-notification.js"></script>
+<link rel="stylesheet" href="css/main.css" type="text/css">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<style>
+body {
+	background: white;
+}
+
+h1 {
+	-webkit-box-sizing: content-box;
+	-moz-box-sizing: content-box;
+	box-sizing: content-box;
+	cursor: pointer;
+	border: none;
+	font: normal 50px/normal "Passero One", Helvetica, sans-serif;
+	color: #222222;
+	text-align: center;
+	-o-text-overflow: clip;
+	text-overflow: clip;
+}
+</style>
+<div class="container">
+	<div ng-controller="MainCtrl">
+		<h1 style="text-align: center;">Carrier Setup</h1>
+		<form class="form-horizontal" name="frm" novalidate role="form" >
+			<div class="form-group">
+				<div class="col-sm-4">
+					<label class="in1">Carrier Id:</label> <input type="text"
+						class="form-control" id="icarrierid" ng-model="carrid"
+						onkeypress='return (event.charCode >= 65 && event.charCode <=90 ) || (event.charCode >= 97 && event.charCode <=122 ) || (event.charCode == 32)'>
+				</div>
+				<div class="col-sm-4">
+					<label class="in1">Carrier Name:</label> <input type="text"
+						id="icarrierName"" ng-model="carrierName" class="form-control"
+						>
+				</div>
+				<div class="col-sm-4">
+					<label class="in1">Carrier Cost:</label> <input type="text"
+						id="icrrcost" ng-model="carrcost" class="form-control"
+						onkeypress='return event.charCode >= 48 && event.charCode <= 57'>
+				</div>
+			</div>
+			<div class="form-group">
+			<div class="col-sm-4">
+					<label class="in1">Contact Name:</label> <input type="text"
+						id="icntname" ng-model="cntname" class="form-control"
+						onkeypress='return (event.charCode >= 65 && event.charCode <=90 ) || (event.charCode >= 97 && event.charCode <=122 ) || (event.charCode == 32)'>
+				</div>
+				<div class="col-sm-4">
+					<label class="in1">Address Line1:</label> <input type="text"
+						class="form-control" ng-model="Address1" id="iadd1">
+				</div>
+				<div class="col-sm-4">
+					<label class="in1">Address Line2:</label> <input type="text"
+						class="form-control" ng-model="Address2" id="iadd2">
+				</div>
+			</div>
+
+			<div class="form-group">
+			<div class="col-sm-4">
+					<label class="in1">City:</label> <input type="text"
+						id="icity" ng-model="city" class="form-control"
+						onkeypress='return (event.charCode >= 65 && event.charCode <=90 ) ||  (event.charCode >= 97 && event.charCode <=122 ) || event.charCode == 32'>
+				</div>
+				<div class="col-sm-4">
+					<label class="in1">Zip:</label> <input type="text"
+						class="form-control" ng-model="zip" id="izip" ng-minlength="5" ng-maxlength="10" required
+						onkeypress='return event.charCode >= 48 && event.charCode <= 57'> 
+				</div>
+				<div class="col-sm-4">
+					<label class="in1">State</label> <input type="text"
+						class="form-control" ng-model="state" id="istate"
+						onkeypress='return (event.charCode >= 65 && event.charCode <=90 ) || (event.charCode >= 97 && event.charCode <=122 ) || event.charCode == 32'>
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="col-md-6">
+					<button class="btn btn-primary"
+						ng-disabled="!carrid || !carrierName || !carrcost || !cntname || !Address1 || !city || !zip || !state"
+						ng-click="create_carrier()">Save Carrier</button>
+
+				
+						
+					<input class="btn btn-primary" type="reset" value="Reset">
+					
+							<button class="btn btn-primary"
+						ng-disabled="!carrid || !carrierName || !carrcost || !cntname || !Address1 || !city || !zip || !state"
+						ng-click="delete_carrier()">Delete Carrier</button>
+					
+				</div>
+			</div>
+
+				<br> <strong><span color="#F6ECED;">{{
+							myData.length }} rows</span></strong> <br>
+				<div style="margin-top: 10px;">
+					<div class="alert-box failure">
+						 <strong>{{ error }}</strong>
+					</div>
+					<div class="alert-box success">
+						 <strong>{{ error }}</strong>
+					</div>
+				</div>
+
+
+			<div id="grid1" class="grid" ui-grid="gridOptions" ng-init="refreshData()"  ui-grid-selection 
+				ui-grid-resize-columns ui-grid-move-columns 
+				 ui-grid-auto-resize></div>
+				 
+		</form>
+	</div>
+</div>
+<script src="js/carrierSetup.js"></script>
+</body>
+</html>

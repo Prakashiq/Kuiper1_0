@@ -1,0 +1,193 @@
+<html>
+<title>Purchase Order Report</title>
+<link rel="stylesheet" href="css/bootstrap.min.css">
+<link rel="stylesheet" href="css/style.css">
+<script type="text/javascript" src="js/angular.min.js"></script>
+<script type="text/javascript" src="js/StoreOrderReport.js"></script>
+<style>
+body {
+	background: white;
+}
+
+table.t1 {
+	margin: 1em auto;
+	border-collapse: collapse;
+	font-family: Arial, Helvetica, sans-serif;
+}
+
+.t1 th, .t1 td {
+	padding: 4px 8px;
+}
+
+.t1 thead th {
+	background: #4f81bd;
+	text-transform: lowercase;
+	text-align: left;
+	font-size: 15px;
+	color: #F6ECED;
+}
+
+.t1 tr {
+	border-right: 1px solid #95b3d7;
+}
+
+.t1 tbody tr {
+	border-bottom: 1px solid #95b3d7;
+}
+
+.t1 tbody tr:nth-child(odd) {
+	background: #e8e5e5;
+	border-right: 1px solid #95b3d7;
+}
+
+.t1 tbody th {
+	border-right: 1px solid #F5b3d7;
+	background: #ecf9f9;
+}
+
+.t1 tbody tr:nth-child(even) td {
+	border-right: 1px solid #95b3d7;
+	background: #fcf9f9;
+}
+
+.t1 tfoot th {
+	background: #4f81bd;
+	text-align: left;
+	font-weight: normal;
+	font-size: 10px;
+	color: #fff;
+}
+
+.t1 tr *:nth-child(3), .t1 tr *:nth-child(4) {
+	text-align: right;
+}
+
+h1 {
+	-webkit-box-sizing: content-box;
+	-moz-box-sizing: content-box;
+	box-sizing: content-box;
+	cursor: pointer;
+	border: none;
+	font: normal 50px/normal "Passero One", Helvetica, sans-serif;
+	color: #222222;
+	text-align: center;
+	-o-text-overflow: clip;
+	text-overflow: clip;
+}
+</style>
+<body class="container">
+	<div ng-app="ReportApp">
+		<div ng-controller="POReport" >
+				<h1>Store Order Report</h1>
+			<table>
+				<tr>
+				<tr>
+					<td><label class="in1">Store Number:</label></td>
+					<td><input type="text" id="ponbr" class="form-control"
+						ng-disabled=1 ng-model="PoNbr"></td>
+				</tr>
+				<tr>
+					<td><label class="in1">Item Number:</label></td>
+					<td><select id="po_status" class="form-control"
+						ng-model="postatus">
+							<option value=''>-ALL-</option>
+							<option>CREATED</option>
+							<option>DELIVERY_ASSIGNED</option>
+							<option>OPEN_TRAILER</option>
+							<option>RECEIVING_IN_PROGRESS</option>
+							<option>RECEIVED_PO</option>
+					</select></td>
+				</tr>
+				<tr><td>.</td></tr>
+			</table>
+
+			<button type="button" class="btn btn-primary" id="refreshButton" 
+				ng-click="showData()">Show Report</button>
+		<div ng-show="datalists.length">
+			<table class="t1" class="paginationclass" cellpadding="10">
+				<tr>
+					<th>Store Order Number</th>
+					<th>Store Order Status</th>
+					<th>Store Order Date</th>
+					<th>Ship Date</th>
+				</tr>
+
+				<tr class="paginationclass"
+					ng-repeat="datalist in datalists | pagination: curPage * pageSize | limitTo: pageSize">
+					<td>{{ datalist._id }}</td>
+					<td>{{ datalist.order_status }}</td>
+					<td>{{ datalist.order_date }}</td>
+					<td>{{ datalist.ship_date }}</td>
+				</tr>
+			</table>
+
+			<table class="t1" class="paginationclass" cellpadding="10">
+				<tr>
+					<th>Store Name #</th>
+					<th>Store Number</th>
+					<th>Carrier Name</th>
+					<th>Carrier Name</th>
+					<th>Trailer #</th>
+					<th>Trailer Name</th>
+					<th>TruckQty</th>
+				</tr>
+				<tbody>
+					<tr class="paginationclass"
+						ng-repeat-start="datalist in datalists | pagination: curPage * pageSize | limitTo: pageSize">
+						<td>{{ datalist.store_name }}</td>
+						<td>{{ datalist.store_nbr }}</td>
+						<td>{{ datalist.carrier._id }}</td>
+						<td>{{ datalist.carrier.carrierName }}</td>
+						<td>{{ datalist.trailer.carrier_id }}</td>
+						<td>{{ datalist.trailer.trailer_name }}</td>
+					<tr>
+						<th>Order line #</th>
+						<th>Item #</th>
+						<th>Ordered Quantity</th>
+						<th>Fulfilled Quantity</th>
+						<th>Due Quantity</th>
+						<th>Each Cost</th>
+					</tr>
+
+					<tr ng-repeat-end ng-repeat="poi in datalist.Orders.storeOrderLinelst">
+						<td>{{ poi.order_line_nbr }}</td>
+						<td>{{ poi.item_nbr }}</td>
+						<td>{{ poi.ordered_qty }}</td>
+						<td>{{ poi.fulfilled_qty }}</td>
+						<td>{{ poi.due_qty }}</td>
+						<td>{{ poi.each_cost }} ({{ poi.unit_UOM }})</td>
+					</tr>
+				</tbody>
+			</table>
+			</div>
+			<div class="pagination pagination-centered"
+				ng-show="datalists.length" align=left>
+				<ul class="pagination-controle pagination">
+					<li>
+						<button type="button" class="btn btn-primary"
+							ng-disabled="curPage == 0" ng-click="curPage=curPage-1">
+							&lt; PREV</button>
+					</li>
+					<li><span>Page {{curPage + 1}} of {{ numberOfPages() }}</span>
+					</li>
+					<li>
+						<button type="button" class="btn btn-primary"
+							ng-disabled="curPage >= datalists.length/pageSize - 1"
+							ng-click="curPage = curPage+1">NEXT &gt;</button>
+					</li>
+				</ul>
+				
+				<a href="/KuiperReport/Reports/StoreOrderReport.pdf" download title="Download Report in pdf format"><img
+				src="/Kuiper/images/pdf-icon32.png"  /></a> <a
+				href="/KuiperReport/Reports/StoreOrderReport.html" download title="Download Report in http format"><img
+				src="/Kuiper/images/html-icon32.png" /></a> <a
+				href="/KuiperReport/Reports/StoreOrderReport.xls" download title="Download Report in excel format" ><img
+				src="/Kuiper/images/xls-icon32.png" /></a>
+				
+			</div>
+		</div>
+	</div>
+</body>
+</html>
+
+

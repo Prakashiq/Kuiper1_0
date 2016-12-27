@@ -1,0 +1,76 @@
+<html>
+        <title></title>
+        <link rel="stylesheet" href="css/bootstrap.min.css">
+        <link rel="stylesheet" href="css/style.css">
+        <script type="text/javascript" src="js/angular.min.js"></script>
+        <script type="text/javascript" src="js/app.js"></script>
+        
+        <style>
+            body {
+                background: linear-gradient(to left, #3D7EAA , #FFE47A); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+            }
+        </style>	
+    <body class="container">
+        <I><h2 class="text-center"> Upcoming Events !!!</h2><I>
+            <marquee behaviour="scroll" direction="left">
+                <img src="css/images/M1.jpg" width="140px" height="110px" border="5" alt="Natural"/>
+                <img src="css/images/P1.jpg" width="140px" height="110px" border="5"/>
+                <img src="css/images/P2.jpg" width="140px" height="110px" border="5"/>
+                <img src="css/images/S1.jpg" width="140px" height="110px" border="5"/>
+                <img src="css/images/v1.jpg" width="140px" height="110px" border="5"/>
+            </marquee>
+
+            <div style="float:right"><marquee behaviour="scroll" direction="up">
+            <img src="css/images/event1.jpg" width="200px" height="160px" border="5" alt="Natural"/><br>
+            <img src="css/images/spacer.jpg" width="10px" height="10px" /><br>
+            <img src="css/images/green1.png" width="200px" height="160px" border="5" alt="Natural"/><br>
+            <img src="css/images/spacer.jpg" width="10px" height="10px" /><br>
+            <img src="css/images/green2.jpg" width="200px" height="160px" border="5" alt="Natural"/><br>
+            <img src="css/images/spacer.jpg" width="10px" height="10px" /><br>
+            <img src="css/images/green4.jpg" width="200px" height="160px" border="5" alt="Natural"/><br>
+            <img src="css/images/spacer.jpg" width="10px" height="10px" /><br>
+            <img src="css/images/green5.png" width="200px" height="160px" border="5" alt="Natural"/><br>
+            <img src="css/images/spacer.jpg" width="10px" height="10px" /><br>
+
+            <img src="css/images/upcoming.jpg" width="200px" height="160px" border="5" alt="Natural"/><br>
+            <img src="css/images/spacer.jpg" width="10px" height="10px" /><br>
+
+            </marquee> </div>
+
+            <div ng-app="myApp" ng-controller="FrmController">
+                <div class="postcomment">
+                    <I><h2 class="text-center"> DC Feeds...</h2><I>
+                    <form class="form-horizontal" name="frm2" novalidate>
+                        <textarea ng-model="txtcomment" placeholder="Your Comment" cols="60" rows="5"></textarea>
+                        <input class="btn btn-warning" type="button" ng-click="btn_add()" value="Post Comment">
+                        <input class="btn btn-warning" type="button" ng-click="btn_home()" value="Home Page"> <hr>   
+                        <div class="scrollbar">
+                        <ul type="none">
+                            <li> 10, Mar 2016 02:18:56  DC Associate: Trailer # 432 Opened </li>
+
+                            <li> 12, Mar 2016 23:18:55  DC Associate: Label # 20205678999945676587 received successfully </li>
+
+                            <li> 13, Mar 2016 02:02:06  DC Supervisor: Label # 20205678999945676588 received successfully </li>
+
+                            <li> 13, Mar 2016 04:04:04  DC Manager: Door # 100 is in use </li>
+
+                            <li> 15, Mar 2016 14:05:04  DC Manager: Label # 20205678999945676589 received successfully </li>
+
+                            <li> 16, Mar 2016 22:10:01  DC Associate: Label # 20205678999945676590 received successfully </li>
+
+                            <li> 16, Mar 2016 23:11:12  DC Associate: Receiver printed for PO # 9087658990 </li>
+
+                            <li> 17, Mar 2016 00:30:01  DC Supervisor: Label # 20205678999945676591 received successfully </li>
+
+                            <li> 20, Mar 2016 02:16:01  DC Supervisor: Label # 30205678999945676699 Reprinted </li>
+
+                                <li ng-repeat="cmnt in comment"> {{ cmnt }}
+                                <!-- <input style="float: right;" class="btn" type="button" ng-click="likeClick(1)" value="{{ likecount }} Like"> -->
+                            </li>
+                        </ul>
+                        </div>
+                    </form>
+                </div>
+            </div>
+	</body>
+</html>
